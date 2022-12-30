@@ -44,6 +44,15 @@ class ZoneService {
       responseHandler.errorResponse(res, 400, error.message, []);
     }
   }
+
+  async getAlldetails() {
+    try {
+      let data = await Zone.find({});
+      return data;
+    } catch (error) {
+      responseHandler.errorResponse(res, 400, error.message, []);
+    }
+  }
 }
 
 module.exports = new ZoneService()

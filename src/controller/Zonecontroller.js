@@ -99,6 +99,30 @@ class ZoneController {
       responseHandler.errorResponse(res, 400, error.message, []);
     }
   }
+  async getAlldetails(req, res) {
+    try {
+      let detail = await zoneservices.getAlldetails()
+
+      if (!detail) {
+        return responseHandler.errorResponse(
+          res,
+          400,
+          MessageConstant.SOMETHING_WRONG,
+          []
+        );
+      }
+
+      if (detail) {
+        return responseHandler.successResponse(
+          res,
+          200,
+          detail
+        );
+      }
+    } catch (error) {
+
+    }
+  }
 }
 
 module.exports = new ZoneController();

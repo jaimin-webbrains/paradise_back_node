@@ -47,6 +47,7 @@ io.on("connection", (socket) => {
 initialdbAdmin.createAdminuser();
 
 require("./src/routes/userroutes")(app);
+require("./src/routes/zoneroutes")(app);
 // require("./src/routes/Super admin/Superadminroutes")(app);
 // require("./src/routes/Super admin/SubscriptionPackageroutes")(app);
 // require("./src/routes/Super admin/SubjectRoutes")(app);

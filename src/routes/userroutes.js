@@ -8,7 +8,7 @@ const routes = (app) => {
 
   app.post("/user/login", Usercontroller.userLogin);
 
-  // app.get("/user/logout", auth, Usercontroller.userLogout);
+  app.get("/user/logout", auth, Usercontroller.userLogout);
 
   // app.get("/user/getAll", auth, Usercontroller.getUserProfile);
 
@@ -19,7 +19,7 @@ const routes = (app) => {
   //   Usercontroller.updateUserProfile
   // );
 
-  // app.post("/user/change-password", auth, Usercontroller.changePassword);
+  app.post("/user/change-password", auth, Usercontroller.changePassword);
 
   app.post("/user/resetpassword", Usercontroller.resetPassword);
 

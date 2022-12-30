@@ -275,7 +275,6 @@ class UserController {
   async changePassword(req, res) {
     try {
       const admin_details = req.user;
-
       const comparePassword = await UserHelper.comparePassword(
         req.body.current_password,
         admin_details.password

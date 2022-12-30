@@ -57,3 +57,9 @@ module.exports.TASK_ADD = "Task added successfully";
 module.exports.TASK_UPDATE = "Task updated successfully";
 module.exports.TASK_DELETE = "Task deleted successfully";
 module.exports.TASK_ASSIGNED = "Task assigned successfully";
+
+
+module.exports.ZONE_REGISTER_SUCCESS = "Zone register successfully";
+module.exports.ZONE_UPDATE_SUCCESS = "Zone update successfully";
+module.exports.ZONE_DELETE_SUCCESS = "Zone delete successfully";
+

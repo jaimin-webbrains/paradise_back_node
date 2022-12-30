@@ -58,7 +58,6 @@ class InitialDbAdmin {
     };
 
     let user = await UserModel.findOne({ is_superadmin: true });
-    console.log(user)
     if (!user) {
       await userDao.Admincreate(data);
     }

@@ -1,9 +1,9 @@
 const bcrypt = require("bcryptjs");
 const MessageConstant = require("../constant/messageconstant");
-const Taskliststatus_superadmin = require("../modal/Taskliststatus_superadmin");
+// const Taskliststatus_superadmin = require("../modal/Taskliststatus_superadmin");
 
 class UserHelper {
-  constructor() {}
+  constructor() { }
 
   comparePassword(candidatePassword, cryptPassword) {
     return bcrypt.compare(candidatePassword, cryptPassword);

@@ -13,7 +13,7 @@ const responseHandler = require("../handler/responsehandler");
 // const messages = require("../helper/messages");
 
 class UserService {
-  constructor() {}
+  constructor() { }
 
   // new admin create
   async userRegister(payload, res) {
@@ -62,7 +62,7 @@ class UserService {
 
     const user = await UserDao.findUserDetails({
       email: payload.email,
-      is_admin: true,
+      is_superadmin: true,
     });
 
     if (!user) {
@@ -119,6 +119,7 @@ class UserService {
   async forgetPassword(request_data) {
     const user = await UserDao.findUserDetails({
       email: request_data.email,
+      is_superadmin: true,
     });
 
     const user1 = await UserDao.findUserDetails({
@@ -139,7 +140,7 @@ class UserService {
       .digest("hex");
 
     const body = forgetpswHtmlString.Forgetpassword(
-      link + "/big-picture-front/user/resetpassword/" + reset_password_token
+      link + "/Paradise_front_react/user/resetpassword/" + reset_password_token
     );
     ///// Name of admin is used to send email to////
 
@@ -167,7 +168,7 @@ class UserService {
 
   // reset password for user with authentication
   async resetPassword(payload, user) {
-    // console.log(payload, user);
+    console.log(payload, user);
     const salt = await bcrypt.genSaltSync(Number(process.env.SALT_ROUNDS));
     const hash = await bcrypt.hashSync(payload.new_password, salt);
     const password = hash;

@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const moment = require("moment");
 class UserController {
-  constructor() {}
+  constructor() { }
 
   // new register user
   async userRegister(req, res) {
@@ -122,7 +122,8 @@ class UserController {
       responseHandler.successResponse(
         res,
         200,
-        MessageConstant.LINK_SEND_SUCCESSFULLY
+        MessageConstant.LINK_SEND_SUCCESSFULLY,
+        []
       );
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);

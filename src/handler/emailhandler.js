@@ -60,11 +60,11 @@ class EmailHandler {
   async sendEmail(email, body, subject, cc = "", attachments = [], user1, res) {
     try {
       // Decode the String
-      let smtp_password = CryptoJS.AES.decrypt(
-        user1.smtp_password,
-        "secret key 123"
-      );
-      let decrpted_smtp_password = smtp_password.toString(CryptoJS.enc.Utf8);
+      // let smtp_password = CryptoJS.AES.decrypt(
+      //   user1.smtp_password,
+      //   "secret key 123"
+      // );
+      // let decrpted_smtp_password = smtp_password.toString(CryptoJS.enc.Utf8);
       const transporter = nodemailer.createTransport(
         smtpTransport({
           host: process.env.SMTP_HOST,
@@ -72,8 +72,8 @@ class EmailHandler {
           port: process.env.SMTP_PORT,
           // secureConnection: false,
           auth: {
-            user: user1.smtp_email,
-            pass: decrpted_smtp_password,
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
           },
           // tls: {
           // do not fail on invalid certs
@@ -99,7 +99,7 @@ class EmailHandler {
       });
       // console.log("transporter", a);
       const mailOptions = {
-        from: user1.smtp_email,
+        from: process.env.SMTP_USER,
         to: email,
         subject,
         html: body,

@@ -6,7 +6,7 @@ const { upload } = require("../middleware/multer");
 const routes = (app) => {
   // app.post("/user/register", Usercontroller.userRegister);
 
-  // app.post("/user/login", Usercontroller.userLogin);
+  app.post("/user/login", Usercontroller.userLogin);
 
   // app.get("/user/logout", auth, Usercontroller.userLogout);
 
@@ -21,9 +21,9 @@ const routes = (app) => {
 
   // app.post("/user/change-password", auth, Usercontroller.changePassword);
 
-  // app.post("/user/resetpassword", Usercontroller.resetPassword);
+  app.post("/user/resetpassword", Usercontroller.resetPassword);
 
-  // app.post("/user/forgetpassword", Usercontroller.forgetPassword);
+  app.post("/user/forgetpassword", Usercontroller.forgetPassword);
 };
 
 module.exports = routes;

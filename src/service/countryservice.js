@@ -1,21 +1,23 @@
 const MessageConstant = require("../constant/messageconstant");
 const responseHandler = require("../handler/responsehandler");
-const Zone = require("../modal/zone");
+const Country = require("../modal/country");
 
-class ZoneService {
+class CountryService {
   constructor() { }
-  async addZonedetails(payload, res) {
+  async addCountrydetails(payload, res) {
     try {
       let query = {
-        zone_name: payload.zone_name
+        country_name: payload.country_name
       };
-      let zoneData = await Zone.find(query);
+      let countryData = await Country.find(query);
       let data;
-      if (zoneData.length > 0) {
-        return (data = "Zone already exists");
+      if (countryData.length > 0) {
+        return (data = "Country already exists");
       }
-      data = await Zone.create({
-        zone_name: payload.zone_name,
+      data = await Country.create({
+        country_name: payload.country_name,
+        is_national: payload.is_national,
+        descreption: payload.descreption
       });
       return data
     } catch (error) {
@@ -23,9 +25,9 @@ class ZoneService {
     }
   }
 
-  async editZonedetails(id, payload) {
+  async editCountrydetails(id, payload) {
     try {
-      let data = await Zone.findByIdAndUpdate(
+      let data = await Country.findByIdAndUpdate(
         { _id: id },
         payload,
         { new: true }
@@ -36,9 +38,9 @@ class ZoneService {
     }
   }
 
-  async deleteZonedetails(id) {
+  async deleteCountrydetails(id) {
     try {
-      let data = await Zone.findByIdAndUpdate({ _id: id }, { is_delete: true }, { new: true });
+      let data = await Country.findByIdAndUpdate({ _id: id }, { is_delete: true }, { new: true });
       return data
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);
@@ -47,7 +49,7 @@ class ZoneService {
 
   async getAlldetails() {
     try {
-      let data = await Zone.find({ is_delete: false });
+      let data = await Country.find({ is_delete: false });
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);
@@ -55,4 +57,4 @@ class ZoneService {
   }
 }
 
-module.exports = new ZoneService()
+module.exports = new CountryService()

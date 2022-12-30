@@ -63,3 +63,8 @@ module.exports.ZONE_REGISTER_SUCCESS = "Zone register successfully";
 module.exports.ZONE_UPDATE_SUCCESS = "Zone update successfully";
 module.exports.ZONE_DELETE_SUCCESS = "Zone delete successfully";
 
+module.exports.COUNTRY_REGISTER_SUCCESS = "Country register successfully";
+module.exports.COUNTRY_UPDATE_SUCCESS = "Country update successfully";
+module.exports.COUNTRY_DELETE_SUCCESS = "Country delete successfully";
+
+

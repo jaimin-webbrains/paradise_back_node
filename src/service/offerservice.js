@@ -1,21 +1,21 @@
 const MessageConstant = require("../constant/messageconstant");
 const responseHandler = require("../handler/responsehandler");
-const Zone = require("../modal/zone");
+const Offer = require("../modal/offer");
 
-class ZoneService {
+class OfferService {
   constructor() { }
-  async addZonedetails(payload, res) {
+  async addOfferdetails(payload, res) {
     try {
       let query = {
-        zone_name: payload.zone_name
+        offer_name: payload.offer_name
       };
-      let zoneData = await Zone.find(query);
+      let offerData = await Offer.find(query);
       let data;
-      if (zoneData.length > 0) {
+      if (offerData.length > 0) {
         return (data = "Zone already exists");
       }
-      data = await Zone.create({
-        zone_name: payload.zone_name,
+      data = await Offer.create({
+        offer_name: payload.offer_name,
       });
       return data
     } catch (error) {
@@ -23,9 +23,9 @@ class ZoneService {
     }
   }
 
-  async editZonedetails(id, payload) {
+  async editOfferdetails(id, payload) {
     try {
-      let data = await Zone.findByIdAndUpdate(
+      let data = await Offer.findByIdAndUpdate(
         { _id: id },
         payload,
         { new: true }
@@ -36,9 +36,9 @@ class ZoneService {
     }
   }
 
-  async deleteZonedetails(id) {
+  async deleteOfferdetails(id) {
     try {
-      let data = await Zone.findByIdAndUpdate({ _id: id }, { is_delete: true }, { new: true });
+      let data = await Offer.findByIdAndUpdate({ _id: id }, { is_delete: true }, { new: true });
       return data
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);
@@ -47,7 +47,7 @@ class ZoneService {
 
   async getAlldetails() {
     try {
-      let data = await Zone.find({ is_delete: false });
+      let data = await Offer.find({ is_delete: false });
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);
@@ -55,4 +55,4 @@ class ZoneService {
   }
 }
 
-module.exports = new ZoneService()
+module.exports = new OfferService()

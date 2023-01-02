@@ -7,9 +7,13 @@ const CitySchema = new Schema({
     type: String,
     trim: true,
   },
-  state_name: {
+  state_id: {
     type: ObjectId,
-    ref: "States"
+    ref: "State"
+  },
+  state_name: {
+    type: String,
+    trim: true,
   },
   descreption: {
     type: String,

@@ -101,7 +101,7 @@ class ZoneController {
   }
   async getAlldetails(req, res) {
     try {
-      let detail = await zoneservices.getAlldetails()
+      let detail = await zoneservices.getAlldetails(req.body)
 
       if (!detail) {
         return responseHandler.errorResponse(

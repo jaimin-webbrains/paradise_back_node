@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const ZoneSchema = new Schema({
   zone_name: {
@@ -30,5 +31,5 @@ ZoneSchema.pre("update", function () {
     }
   );
 });
-
+ZoneSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model("Zone", ZoneSchema)

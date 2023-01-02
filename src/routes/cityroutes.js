@@ -6,7 +6,7 @@ const routes = (app) => {
   app.post("/city/add", auth, CityController.addCitydetails);
   app.post("/city/edit/:id", auth, CityController.editCitydetails);
   app.delete("/city/delete/:id", auth, CityController.deleteCitydetails);
-  app.get("/city/alldetails", auth, CityController.getAlldetails);
+  app.post("/city/alldetails", auth, CityController.getAlldetails);
 }
 
 module.exports = routes;

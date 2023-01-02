@@ -1,7 +1,7 @@
 const MessageConstant = require("../constant/messageconstant");
 const responseHandler = require("../handler/responsehandler");
 const Country = require("../modal/country");
-
+const mongoose = require("mongoose")
 class CountryService {
   constructor() { }
   async addCountrydetails(payload, res) {
@@ -47,9 +47,25 @@ class CountryService {
     }
   }
 
-  async getAlldetails() {
+  async getAlldetails(payload) {
     try {
-      let data = await Country.find({ is_delete: false });
+      let options = {
+        page: payload.page ? payload.page : 1,
+        limit: payload.limit,
+        sort: { created_at: -1 },
+      };
+      var query;
+      let search = payload.search;
+      if (search.length) {
+        query = {
+          is_delete: false,
+          $or: [{ country_name: { $regex: search, $options: "i" } },
+          { descreption: { $regex: search, $options: "i" } }]
+        };
+      } else {
+        query = {};
+      }
+      let data = await Country.paginate(query, options);
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);

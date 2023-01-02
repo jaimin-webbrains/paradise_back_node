@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongoosePaginate = require("mongoose-paginate-v2")
 
 const CountrySchema = new Schema({
   country_name: {
@@ -38,5 +39,7 @@ CountrySchema.pre("update", function () {
     }
   );
 });
+
+CountrySchema.plugin(mongoosePaginate)
 
 module.exports = mongoose.model("Country", CountrySchema)

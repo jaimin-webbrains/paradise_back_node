@@ -107,7 +107,7 @@ class CityController {
   }
   async getAlldetails(req, res) {
     try {
-      let detail = await cityservices.getAlldetails()
+      let detail = await cityservices.getAlldetails(req.body)
 
       if (!detail) {
         return responseHandler.errorResponse(

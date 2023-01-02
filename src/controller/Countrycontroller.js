@@ -112,7 +112,7 @@ class CountryController {
   }
   async getAlldetails(req, res) {
     try {
-      let detail = await countryservices.getAlldetails()
+      let detail = await countryservices.getAlldetails(req.body)
 
       if (!detail) {
         return responseHandler.errorResponse(

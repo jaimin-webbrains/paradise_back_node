@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongoosePaginate = require("mongoose-paginate-v2")
 
 const OfferSchema = new Schema({
   offer_name: {
@@ -30,5 +31,7 @@ OfferSchema.pre("update", function () {
     }
   );
 });
+
+OfferSchema.plugin(mongoosePaginate)
 
 module.exports = mongoose.model("Offer", OfferSchema)

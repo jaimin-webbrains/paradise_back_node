@@ -6,7 +6,7 @@ const routes = (app) => {
   app.post("/offer/add", auth, OfferController.addOfferdetails);
   app.post("/offer/edit/:id", auth, OfferController.editOfferdetails);
   app.delete("/offer/delete/:id", auth, OfferController.deleteOfferdetails);
-  app.get("/offer/alldetails", auth, OfferController.getAlldetails);
+  app.post("/offer/alldetails", auth, OfferController.getAlldetails);
 }
 
 module.exports = routes;

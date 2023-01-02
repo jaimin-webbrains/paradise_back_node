@@ -99,7 +99,7 @@ class OfferController {
   }
   async getAlldetails(req, res) {
     try {
-      let detail = await offerservices.getAlldetails()
+      let detail = await offerservices.getAlldetails(req.body)
 
       if (!detail) {
         return responseHandler.errorResponse(

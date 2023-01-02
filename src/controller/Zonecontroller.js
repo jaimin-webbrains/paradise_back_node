@@ -12,10 +12,10 @@ class ZoneController {
     try {
       req
         .checkBody("zone_name")
-        .notEmpty()
-        .withMessage("Please enter zone zonename.")
+        .notEmpty().trim()
+        .withMessage("Please enter zone name.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a valid zonename.")
+        .withMessage("Please enter a valid name.")
 
       const errors = req.validationErrors();
 
@@ -44,10 +44,10 @@ class ZoneController {
     try {
       req
         .checkBody("zone_name")
-        .notEmpty()
-        .withMessage("Please enter zonename")
+        .notEmpty().trim()
+        .withMessage("Please enter zone name")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a valid zonename.")
+        .withMessage("Please enter a valid zone name.")
 
       const errors = req.validationErrors();
 

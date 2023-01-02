@@ -12,10 +12,10 @@ class CountryController {
     try {
       req
         .checkBody("country_name")
-        .notEmpty()
-        .withMessage("Please enter country zonename.")
+        .notEmpty().trim()
+        .withMessage("Please enter country name.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a country zonename.")
+        .withMessage("Please enter a country name.")
 
       req
         .checkBody("is_national")
@@ -24,7 +24,7 @@ class CountryController {
 
       req
         .checkBody("descreption")
-        .notEmpty()
+        .notEmpty().trim()
         .withMessage("Please enter descreption.")
 
       const errors = req.validationErrors();
@@ -54,10 +54,10 @@ class CountryController {
     try {
       req
         .checkBody("country_name")
-        .notEmpty()
-        .withMessage("Please enter country zonename.")
+        .notEmpty().trim()
+        .withMessage("Please enter country name.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a country zonename.")
+        .withMessage("Please enter a country name.")
 
       req
         .checkBody("is_national")
@@ -66,7 +66,7 @@ class CountryController {
 
       req
         .checkBody("descreption")
-        .notEmpty()
+        .notEmpty().trim()
         .withMessage("Please enter descreption.")
 
       const errors = req.validationErrors();
@@ -136,6 +136,7 @@ class CountryController {
         return responseHandler.successResponse(
           res,
           200,
+          "",
           detail
         );
       }

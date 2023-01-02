@@ -12,10 +12,10 @@ class OfferController {
     try {
       req
         .checkBody("offer_name")
-        .notEmpty()
-        .withMessage("Please enter zone zonename.")
+        .notEmpty().trim()
+        .withMessage("Please enter offer name.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a valid zonename.")
+        .withMessage("Please enter a valid offer name.")
 
       const errors = req.validationErrors();
 
@@ -44,8 +44,8 @@ class OfferController {
     try {
       req
         .checkBody("offer_name")
-        .notEmpty()
-        .withMessage("Please enter offername")
+        .notEmpty().trim()
+        .withMessage("Please enter offer name")
 
       const errors = req.validationErrors();
 

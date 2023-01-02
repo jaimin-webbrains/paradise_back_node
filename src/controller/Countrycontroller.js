@@ -82,6 +82,15 @@ class CountryController {
 
       const details = await countryservices.editCountrydetails(req.params.id, req.body);
 
+      if (details === "Country already exists") {
+        return responseHandler.errorResponse(
+          res,
+          200,
+         details,
+          []
+        );
+      }
+
       if (details) {
         return responseHandler.successResponse(
           res,

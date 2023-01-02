@@ -1,26 +1,31 @@
 const responseHandler = require("../handler/responsehandler");
-const countryservices = require("../service/countryservice");
+const stateservices = require("../service/stateservice");
 const MessageConstant = require("../constant/messageconstant");
-const country = require("../modal/country");
+const offer = require("../modal/offer");
 const messages = require("../helper/messages");
 const { check, validationResult } = require("express-validator");
 const _ = require("lodash");
 
-class CountryController {
+class StateController {
   constructor() { }
-  async addCountrydetails(req, res) {
+  async addStatedetails(req, res) {
     try {
+      req
+        .checkBody("state_name")
+        .notEmpty()
+        .withMessage("Please enter statename.")
+        .matches(/^[a-zA-Z][a-zA-Z ]*$/)
+        .withMessage("Please enter a valid zonename.")
+
       req
         .checkBody("country_name")
         .notEmpty()
-        .withMessage("Please enter country zonename.")
-        .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a country zonename.")
+        .withMessage("Please enter countryname.")
 
       req
-        .checkBody("is_national")
+        .checkBody("zone_name")
         .notEmpty()
-        .withMessage("Please select is national.")
+        .withMessage("Please enter zonename.")
 
       const errors = req.validationErrors();
 
@@ -32,36 +37,39 @@ class CountryController {
           []
         );
       }
-      const countryDetails = await countryservices.addCountrydetails(req.body, res);
-      if (countryDetails) {
+      const offerDetails = await stateservices.addStatedetails(req.body, res);
+      if (offerDetails) {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.COUNTRY_REGISTER_SUCCESS,
-          countryDetails
+          MessageConstant.ZONE_REGISTER_SUCCESS,
+          offerDetails
         );
       }
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);
     }
   }
-  async editCountrydetails(req, res) {
+  async editStatedetails(req, res) {
     try {
+      req
+        .checkBody("state_name")
+        .notEmpty()
+        .withMessage("Please enter statename.")
+        .matches(/^[a-zA-Z][a-zA-Z ]*$/)
+        .withMessage("Please enter a valid zonename.")
+
       req
         .checkBody("country_name")
         .notEmpty()
-        .withMessage("Please enter country zonename.")
-        .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a country zonename.")
+        .withMessage("Please enter countryname.")
 
       req
-        .checkBody("is_national")
+        .checkBody("zone_name")
         .notEmpty()
-        .withMessage("Please select is national.")
-
+        .withMessage("Please enter zonename.")
 
       const errors = req.validationErrors();
-
       if (errors) {
         return responseHandler.errorResponse(
           res,
@@ -70,14 +78,12 @@ class CountryController {
           []
         );
       }
-
-      const details = await countryservices.editCountrydetails(req.params.id, req.body);
-
+      const details = await stateservices.editStatedetails(req.params.id, req.body, res);
       if (details) {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.COUNTRY_UPDATE_SUCCESS,
+          MessageConstant.ZONE_UPDATE_SUCCESS,
           details
         );
       }
@@ -85,9 +91,9 @@ class CountryController {
       responseHandler.errorResponse(res, 400, error.message, [])
     }
   }
-  async deleteCountrydetails(req, res) {
+  async deleteStatedetails(req, res) {
     try {
-      const detail = await countryservices.deleteCountrydetails(req.params.id);
+      const detail = await stateservices.deleteStatedetails(req.params.id);
       if (!detail) {
         return responseHandler.errorResponse(
           res,
@@ -101,7 +107,7 @@ class CountryController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.COUNTRY_DELETE_SUCCESS,
+          MessageConstant.ZONE_DELETE_SUCCESS,
           detail
         );
       }
@@ -112,7 +118,7 @@ class CountryController {
   }
   async getAlldetails(req, res) {
     try {
-      let detail = await countryservices.getAlldetails()
+      let detail = await stateservices.getAlldetails()
 
       if (!detail) {
         return responseHandler.errorResponse(
@@ -127,7 +133,6 @@ class CountryController {
         return responseHandler.successResponse(
           res,
           200,
-          "",
           detail
         );
       }
@@ -137,4 +142,4 @@ class CountryController {
   }
 }
 
-module.exports = new CountryController();
+module.exports = new StateController();

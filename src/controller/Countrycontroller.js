@@ -12,10 +12,10 @@ class CountryController {
     try {
       req
         .checkBody("country_name")
-        .notEmpty()
-        .withMessage("Please enter country zonename.")
+        .notEmpty().trim()
+        .withMessage("Please enter country name.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a country zonename.")
+        .withMessage("Please enter a country name.")
 
       req
         .checkBody("is_national")
@@ -49,10 +49,10 @@ class CountryController {
     try {
       req
         .checkBody("country_name")
-        .notEmpty()
-        .withMessage("Please enter country zonename.")
+        .notEmpty().trim()
+        .withMessage("Please enter country name.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a country zonename.")
+        .withMessage("Please enter a country name.")
 
       req
         .checkBody("is_national")
@@ -72,6 +72,15 @@ class CountryController {
       }
 
       const details = await countryservices.editCountrydetails(req.params.id, req.body);
+
+      if (details === "Country already exists") {
+        return responseHandler.errorResponse(
+          res,
+          200,
+          details,
+          []
+        );
+      }
 
       if (details) {
         return responseHandler.successResponse(

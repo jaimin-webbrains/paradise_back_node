@@ -26,8 +26,16 @@ class CountryService {
   }
 
   async editCountrydetails(id, payload) {
+    let query = {
+      country_name: payload.country_name
+    };
+    let data;
+    let countryData = await Country.find(query);
+    if (countryData.length > 0) {
+      return (data = "Country already exists");
+    }
     try {
-      let data = await Country.findByIdAndUpdate(
+       data = await Country.findByIdAndUpdate(
         { _id: id },
         payload,
         { new: true }

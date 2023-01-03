@@ -45,7 +45,6 @@ class ZoneService {
       responseHandler.errorResponse(res, 400, error.message, []);
     }
   }
-
   async getAlldetails(payload) {
     try {
       let options = {

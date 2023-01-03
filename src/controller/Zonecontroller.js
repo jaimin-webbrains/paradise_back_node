@@ -112,10 +112,13 @@ class ZoneController {
         );
       }
 
+      console.log(detail)
+
       if (detail) {
         return responseHandler.successResponse(
           res,
           200,
+          "",
           detail
         );
       }

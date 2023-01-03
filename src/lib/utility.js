@@ -5,7 +5,7 @@ const _ = require("lodash");
 class Utility {
   generateJwtToken(user_id) {
     var token = jwt.sign({ id: user_id }, process.env.JWT_SECRET, {
-      expiresIn: "4320000", //86400 // expires in 24 hours
+      expiresIn: "24h", //86400 // expires in 24 hours
     });
     return token;
   }

@@ -49,9 +49,19 @@ class CityService {
     }
   }
 
-  async getAlldetails() {
+  async getAlldetails(payload) {
     try {
       let data = await City.find({ is_delete: false });
+      let search = payload.search;
+      if (search.length > 0) {
+        return this.aggregate([
+          {
+            $match: {
+              _id: ""
+            }
+          }
+        ])
+      }
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);

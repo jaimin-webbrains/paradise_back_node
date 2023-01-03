@@ -54,14 +54,14 @@ class OfferService {
       };
       var query;
       let search = payload.search;
-      if (search.length) {
-        query = {
-          is_delete: false,
-          $or: [{ offer_name: { $regex: search, $options: "i" } }]
-        };
-      } else {
-        query = {};
-      }
+      // if (search.length) {
+      query = {
+        is_delete: false,
+        $or: [{ offer_name: { $regex: search, $options: "i" } }]
+      };
+      // } else {
+      //   query = {};
+      // }
       let data = await Offer.paginate(query, options);
       return data;
     } catch (error) {

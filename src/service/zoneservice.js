@@ -54,14 +54,14 @@ class ZoneService {
       };
       var query;
       let search = payload.search;
-      if (search.length) {
-        query = {
-          is_delete: false,
-          $or: [{ zone_name: { $regex: search, $options: "i" } }]
-        };
-      } else {
-        query = {};
-      }
+      // if (search.length) {
+      query = {
+        is_delete: false,
+        $or: [{ zone_name: { $regex: search, $options: "i" } }]
+      };
+      // } else {
+      // query = {};
+      // }
       let data = await Zone.paginate(query, options);
 
       return data;

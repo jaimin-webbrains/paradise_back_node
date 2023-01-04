@@ -18,12 +18,12 @@ class StateController {
         .withMessage("Please enter a valid zonename.")
 
       req
-        .checkBody("country_name")
+        .checkBody("country_id")
         .notEmpty()
         .withMessage("Please enter countryname.")
 
       req
-        .checkBody("zone_name")
+        .checkBody("zone_id")
         .notEmpty()
         .withMessage("Please enter zonename.")
 
@@ -60,12 +60,12 @@ class StateController {
         .withMessage("Please enter a valid zonename.")
 
       req
-        .checkBody("country_name")
+        .checkBody("country_id")
         .notEmpty()
         .withMessage("Please enter countryname.")
 
       req
-        .checkBody("zone_name")
+        .checkBody("zone_id")
         .notEmpty()
         .withMessage("Please enter zonename.")
 
@@ -118,7 +118,7 @@ class StateController {
   }
   async getAlldetails(req, res) {
     try {
-      let detail = await stateservices.getAlldetails()
+      let detail = await stateservices.getAlldetails(req.body)
 
       if (!detail) {
         return responseHandler.errorResponse(

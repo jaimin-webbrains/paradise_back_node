@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const { ObjectId } = mongoose.Schema.Types;
+const mongoosePaginate = require("mongoose-paginate-v2")
 
 const CitySchema = new Schema({
   city_name: {
@@ -43,5 +44,6 @@ CitySchema.pre("update", function () {
     }
   );
 });
+CitySchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model("City", CitySchema)

@@ -1,17 +1,18 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const { ObjectId } = mongoose.Schema.Types;
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 const StateSchema = new Schema({
   state_name: {
     type: String,
     trim: true,
   },
-  country_name: {
+  country_id: {
     type: ObjectId,
     ref: "Countrys"
   },
-  zone_name: {
+  zone_id: {
     type: ObjectId,
     ref: "Zones"
   },
@@ -43,5 +44,6 @@ StateSchema.pre("update", function () {
     }
   );
 });
+StateSchema.plugin(mongoosePaginate)
 
 module.exports = mongoose.model("State", StateSchema)

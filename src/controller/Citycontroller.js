@@ -17,7 +17,7 @@ class CityController {
         .withMessage("Please enter a valid zonename.")
 
       req
-        .checkBody("state_name")
+        .checkBody("state_id")
         .notEmpty()
         .withMessage("Please enter countryname.")
 

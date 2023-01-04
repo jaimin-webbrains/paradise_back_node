@@ -2,6 +2,9 @@ const { LicenseManagerLinuxSubscriptions } = require("aws-sdk");
 const MessageConstant = require("../constant/messageconstant");
 const responseHandler = require("../handler/responsehandler");
 const City = require("../modal/city");
+const state = require("../modal/state");
+const mongoose = require("mongoose")
+// const ObjectId = require('mongodb').ObjectId;
 
 class CityService {
   constructor() { }
@@ -17,7 +20,7 @@ class CityService {
       }
       data = await City.create({
         city_name: payload.city_name,
-        state_name: payload.state_name,
+        state_id: payload.state_id,
         descreption: payload.descreption
       });
       return data
@@ -51,17 +54,28 @@ class CityService {
 
   async getAlldetails(payload) {
     try {
-      let data = await City.find({ is_delete: false });
-      let search = payload.search;
-      if (search.length > 0) {
-        return this.aggregate([
-          {
-            $match: {
-              _id: ""
-            }
-          }
-        ])
-      }
+      console.log(payload);
+      let options = {
+        page: payload.page ? payload.page : 1,
+        limit: payload.limit ? payload.limit : 10,
+        sort: { created_at: -1 },
+      };
+      let search = new RegExp(payload.search, "i");
+
+      let states = await state.find({ state_name: search });
+      let state_ids = states.map(({ _id }) => _id);
+
+      var query;
+      query = {
+        is_delete: false,
+        $or: [
+          { city_name: search },
+          { state_id: { $in: state_ids } },
+          { descreption: search },
+        ]
+      };
+      let data = await City.paginate(query, options);
+      console.log(data);
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);

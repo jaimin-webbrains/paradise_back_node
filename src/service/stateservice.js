@@ -3,6 +3,9 @@ const MessageConstant = require("../constant/messageconstant");
 const responseHandler = require("../handler/responsehandler");
 require("../modal/state")
 const State = require("../modal/state");
+const mongoose = require("mongoose")
+const country = require("../modal/country");
+const zone = require("../modal/zone");
 
 class StateService {
   constructor() { }
@@ -35,7 +38,6 @@ class StateService {
         payload,
         { new: true }
       );
-      // console.log(data);
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);
@@ -51,9 +53,34 @@ class StateService {
     }
   }
 
-  async getAlldetails() {
+  async getAlldetails(payload) {
     try {
-      let data = await State.find({ is_delete: false });
+      let options = {
+        page: payload.page ? payload.page : 1,
+        limit: payload.limit ? payload.limit : 10,
+        sort: { created_at: -1 },
+      };
+      let search = new RegExp(payload.search, "i");
+
+      let countries = await country.find({ country_name: search });
+      let country_ids = countries.map(({ _id }) => _id);
+      console.log(country_ids)
+      let zones = await zone.find({ zone_name: search });
+      let zone_ids = zones.map(({ _id }) => _id);
+
+      console.log(zone_ids)
+
+      var query;
+      query = {
+        is_delete: false,
+        $or: [
+          { state_name: search },
+          { country_id: { $in: country_ids } },
+          { zone_id: { $in: zone_ids } },
+          { descreption: search },
+        ]
+      };
+      let data = await State.paginate(query, options);
       return data;
     } catch (error) {
       responseHandler.errorResponse(res, 400, error.message, []);

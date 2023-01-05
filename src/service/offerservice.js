@@ -3,6 +3,7 @@ const responseHandler = require("../handler/responsehandler");
 const Offer = require("../modal/offer");
 const mongoose = require("mongoose");
 class OfferService {
+
   constructor() { }
   async addOfferdetails(payload, res) {
     try {
@@ -12,7 +13,7 @@ class OfferService {
       let offerData = await Offer.find(query);
       let data;
       if (offerData.length > 0) {
-        return (data = "Zone already exists");
+        return (data = "Offer already exists");
       }
       data = await Offer.create({
         offer_name: payload.offer_name,

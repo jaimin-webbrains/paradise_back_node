@@ -42,7 +42,7 @@ class StateController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_REGISTER_SUCCESS,
+          MessageConstant.STATE_REGISTER_SUCCESS,
           offerDetails
         );
       }
@@ -83,7 +83,7 @@ class StateController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_UPDATE_SUCCESS,
+          MessageConstant.STATE_UPDATE_SUCCESS,
           details
         );
       }
@@ -107,7 +107,7 @@ class StateController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_DELETE_SUCCESS,
+          MessageConstant.STATE_DELETE_SUCCESS,
           detail
         );
       }
@@ -133,6 +133,7 @@ class StateController {
         return responseHandler.successResponse(
           res,
           200,
+          "",
           detail
         );
       }

@@ -4,6 +4,7 @@ var fs = require("fs");
 const multerStorage = multer.diskStorage({
   destination: (req, file, cb) => {
     if (
+      file.fieldname === "package_img" ||
       file.fieldname === "logo" ||
       file.fieldname === "document_files" ||
       file.fieldname === "event_img"
@@ -30,6 +31,17 @@ const multerStorage = multer.diskStorage({
 exports.upload = multer({
   storage: multerStorage,
   fileFilter: (req, file, cb) => {
+    if (file.fieldname === "package_img") {
+      if (
+        file.mimetype === "image/png" ||
+        file.mimetype === "image/jpg" ||
+        file.mimetype === "image/jpeg"
+      ) {
+        cb(null, true);
+      } else {
+        return cb(null, false);
+      }
+    }
     if (file.fieldname === "logo") {
       if (
         file.mimetype === "image/png" ||
@@ -47,7 +59,21 @@ exports.upload = multer({
         file.mimetype == "application/pdf" ||
         file.mimetype == "application/msword" ||
         file.mimetype ==
-          "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+        file.mimetype == "text/csv"
+      ) {
+        cb(null, true);
+      } else {
+        return cb(null, false);
+      }
+    }
+    if (file.fieldname === "document_files") {
+      // console.log(file, "file");
+      if (
+        file.mimetype == "application/pdf" ||
+        file.mimetype == "application/msword" ||
+        file.mimetype ==
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
         file.mimetype == "text/csv"
       ) {
         cb(null, true);

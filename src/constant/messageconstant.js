@@ -63,8 +63,23 @@ module.exports.ZONE_REGISTER_SUCCESS = "Zone register successfully";
 module.exports.ZONE_UPDATE_SUCCESS = "Zone update successfully";
 module.exports.ZONE_DELETE_SUCCESS = "Zone delete successfully";
 
+module.exports.OFFER_REGISTER_SUCCESS = "Offer register successfully";
+module.exports.OFFER_UPDATE_SUCCESS = "Offer update successfully";
+module.exports.OFFER_DELETE_SUCCESS = "Offer delete successfully";
+
 module.exports.COUNTRY_REGISTER_SUCCESS = "Country register successfully";
 module.exports.COUNTRY_UPDATE_SUCCESS = "Country update successfully";
 module.exports.COUNTRY_DELETE_SUCCESS = "Country delete successfully";
+
+module.exports.STATE_REGISTER_SUCCESS = "State register successfully";
+module.exports.STATE_UPDATE_SUCCESS = "State update successfully";
+module.exports.STATE_DELETE_SUCCESS = "State delete successfully";
+
+module.exports.CITY_REGISTER_SUCCESS = "City register successfully";
+module.exports.CITY_UPDATE_SUCCESS = "City update successfully";
+module.exports.CITY_DELETE_SUCCESS = "City delete successfully";
+
+module.exports.PACKAGE_REGISTER_SUCCESS = "Package register successfully";
+module.exports.PACKAGE_UPDATE_SUCCESS = "Package update successfully";
 
 

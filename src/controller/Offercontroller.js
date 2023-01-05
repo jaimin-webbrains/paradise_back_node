@@ -32,7 +32,7 @@ class OfferController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_REGISTER_SUCCESS,
+          MessageConstant.OFFER_REGISTER_SUCCESS,
           offerDetails
         );
       }
@@ -64,7 +64,7 @@ class OfferController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_UPDATE_SUCCESS,
+          MessageConstant.OFFER_UPDATE_SUCCESS,
           details
         );
       }
@@ -88,7 +88,7 @@ class OfferController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_DELETE_SUCCESS,
+          MessageConstant.OFFER_DELETE_SUCCESS,
           detail
         );
       }
@@ -114,6 +114,7 @@ class OfferController {
         return responseHandler.successResponse(
           res,
           200,
+          "",
           detail
         );
       }

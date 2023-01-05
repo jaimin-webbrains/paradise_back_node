@@ -1,4 +1,3 @@
-const { LicenseManagerLinuxSubscriptions } = require("aws-sdk");
 const MessageConstant = require("../constant/messageconstant");
 const responseHandler = require("../handler/responsehandler");
 const City = require("../modal/city");

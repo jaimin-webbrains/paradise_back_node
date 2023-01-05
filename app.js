@@ -52,6 +52,7 @@ require("./src/routes/countryroutes")(app);
 require("./src/routes/offerroutes")(app);
 require("./src/routes/stateroutes")(app);
 require("./src/routes/cityroutes")(app);
+require("./src/routes/Packageroutes")(app);
 // require("./src/routes/Super admin/Superadminroutes")(app);
 // require("./src/routes/Super admin/SubscriptionPackageroutes")(app);
 // require("./src/routes/Super admin/SubjectRoutes")(app);

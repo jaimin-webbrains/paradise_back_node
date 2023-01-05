@@ -36,7 +36,7 @@ class CityController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_REGISTER_SUCCESS,
+          MessageConstant.CITY_REGISTER_SUCCESS,
           offerDetails
         );
       }
@@ -72,7 +72,7 @@ class CityController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_UPDATE_SUCCESS,
+          MessageConstant.CITY_UPDATE_SUCCESS,
           details
         );
       }
@@ -96,7 +96,7 @@ class CityController {
         return responseHandler.successResponse(
           res,
           200,
-          MessageConstant.ZONE_DELETE_SUCCESS,
+          MessageConstant.CITY_DELETE_SUCCESS,
           detail
         );
       }
@@ -122,6 +122,7 @@ class CityController {
         return responseHandler.successResponse(
           res,
           200,
+          "",
           detail
         );
       }

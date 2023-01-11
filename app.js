@@ -75,10 +75,10 @@ require("./src/routes/Packageroutes")(app);
 //     path.join(__dirname.replace("/src", ""), "big-picture-front/index.html")
 //   );
 // });
-app.use("/", express.static(__dirname.replace("/src", "") + "/Public"));
+// app.use("/", express.static(__dirname.replace("/src", "") + "/Public"));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname.replace("/src", ""), "Public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname.replace("/src", ""), "Public/index.html"));
+// });
 
 module.exports = app;

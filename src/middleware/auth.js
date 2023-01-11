@@ -5,9 +5,11 @@ const response_handler = require("../handler/responsehandler");
 const error_codes = require("../helper/error_codes");
 
 const auth = async (req, res, next) => {
+  console.log("req",req);
   try {
     let usertoken;
     const token = req.header("Authorization").replace("Bearer ", "");
+    console.log(token,"token")
     if (!token) {
       return response_handler.errorResponse(
         res,
@@ -25,6 +27,7 @@ const auth = async (req, res, next) => {
         );
       } else {
         usertoken = await user.findOne({ _id: decoded.id });
+        console.log(usertoken,"usertoken");
         req.user = usertoken;
         next();
       }

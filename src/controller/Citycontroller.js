@@ -14,12 +14,12 @@ class CityController {
         .notEmpty()
         .withMessage("Please enter statename.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a valid zonename.")
+        .withMessage("Please enter a valid cityname.")
 
       req
         .checkBody("state_id")
         .notEmpty()
-        .withMessage("Please enter countryname.")
+        .withMessage("Please enter statename.")
 
       const errors = req.validationErrors();
 
@@ -51,12 +51,12 @@ class CityController {
         .notEmpty()
         .withMessage("Please enter statename.")
         .matches(/^[a-zA-Z][a-zA-Z ]*$/)
-        .withMessage("Please enter a valid zonename.")
+        .withMessage("Please enter a valid cityname.")
 
       req
         .checkBody("state_name")
         .notEmpty()
-        .withMessage("Please enter countryname.")
+        .withMessage("Please enter statename.")
 
       const errors = req.validationErrors();
       if (errors) {

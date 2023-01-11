@@ -38,6 +38,7 @@ class StateController {
         );
       }
       const offerDetails = await stateservices.addStatedetails(req.body, res);
+      console.log("offerDetails",offerDetails);
       if (offerDetails) {
         return responseHandler.successResponse(
           res,
@@ -117,8 +118,12 @@ class StateController {
     }
   }
   async getAlldetails(req, res) {
+    // console.log("req",req.body)
+    // console.log("res123",res);  
+  
     try {
-      let detail = await stateservices.getAlldetails(req.body)
+      const detail = await stateservices.getAlldetails(req.body)
+      // console.log("detsaasassaail",detail);
 
       if (!detail) {
         return responseHandler.errorResponse(
@@ -141,6 +146,27 @@ class StateController {
 
     }
   }
+
+  // async viewStatedetails(req, res) {
+  //   try {
+  //     const detail = await stateservices.viewStatedetails(req.params.id);
+
+  //     if (!detail) {
+  //       return responseHandler.errorResponse(
+  //         res,
+  //         400,
+  //         MessageConstant.SOMETHING_WRONG,
+  //         []
+  //       );
+  //     }
+
+  //     if (detail) {
+  //       return responseHandler.successResponse(res, 200, "", detail);
+  //     }
+  //   } catch (error) {
+  //     responseHandler.errorResponse(res, 400, error.message, []);
+  //   }
+  // }
 }
 
 module.exports = new StateController();

@@ -12,7 +12,7 @@ const zone = require("../modal/zone");
 class StateService {
   constructor() {}
   async addStatedetails(payload, res) {
-    console.log("add-res",res);
+    // console.log("add-res",res);
     try {
       let query = {
         state_name: payload.state_name,
@@ -59,7 +59,7 @@ class StateService {
   }
 
   async getAlldetails(payload) {
-    // console.log("payload", payload);
+    console.log("payload", payload);
     try {
       let options = {
         page: payload.page ? payload.page : 1,
@@ -84,21 +84,21 @@ class StateService {
 
       let blankArray = [];
       for (let c of states) {
-        // console.log("CC",c);
+        console.log("CC",c);
 
         let countrydata = await country.findById({ _id: c.country_id });
-        // let zonedata = await zone.findById({ _id: c.zone_id });
+        let zonedata = await zone.findById({ _id: c.zone_id });
 
-        // console.log("zonedata",zonedata);
+        console.log("zonedata",zonedata);
         let obj = {
           ...c._doc,
           countrydata: countrydata,
-          // zonedata: zonedata
+          zonedata: zonedata
         };
         blankArray.push(obj);
         // console.log("obj",obj);
       }
-      // console.log("blankArray",blankArray)
+      console.log("blankArray",blankArray)
 
       const arry = blankArray.length > 0 && blankArray;
 
